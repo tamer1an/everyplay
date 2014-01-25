@@ -150,7 +150,7 @@ VideoApp = {
 
         footer.appendChild(fragment);
 
-        history.pushState({videoSrc: dataSet.src}, "title", "test");
+        history.pushState({videoSrc: dataSet.src}, "title", "replay");
         footer.classList.remove("hidden");
     }
 };

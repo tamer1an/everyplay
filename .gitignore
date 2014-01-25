@@ -17,6 +17,7 @@ local.properties
 .loadpath
 .idea/*.*
 everyplay/.idea/libraries/*.*
+everyplay/.idea/dictionaries/*.*
 everyplay/.idea/scopes/*.*
 everyplay/.idea/*.*
 node_module/*.*

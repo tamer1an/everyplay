@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  //p Welcome to #{title}
+  section(class="unselectable", data-role="module")
+    header
+      h1 Everyplay videos
+  section(data-role="content")
+    label(for="video-filter") Filter:
+    select(id="video-filter")
+      option Staff picks
+      option(value="popularity") All games
+      option(value="popularity_alltime") Top
+      option(value="created_at") Latest
+    div(id="videos")
+  footer(data-role="single-video")

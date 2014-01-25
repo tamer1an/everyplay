@@ -28,8 +28,11 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get(['/','/replay'], routes.index);
 app.get('/users', user.list);
+app.get('/replay/:video', function(req, res) {
+    res.send('<h1>' + req.params.video + '</h1>');
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

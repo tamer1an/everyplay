@@ -9,10 +9,12 @@ header h1 {
     font-size: 180%;
 }
 footer[data-role="single-video"] > video {
-    width: 100%;
+    width: 50%;
+    transform: rotate(180deg);
 }
 footer[data-role="single-video"] {
     padding: 10px;
+    margin: 0 auto;
 }
 section[data-role="content"] div {
     width: 100%;
