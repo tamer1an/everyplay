@@ -42,6 +42,7 @@ VideoApp = {
         limit:24
     },
     lastVideosQuery:{    },
+    lastVideosQueryResult:[],
     selectors:{
         videos_thumb:'section[data-role="content"] div > img'
     },
@@ -55,6 +56,12 @@ VideoApp = {
     getURL:function(options){
         return this.URL+options;
     },
+	setLastVideosQueryResult:function(arr){
+        this.lastVideosQueryResult=arr;
+    },
+    setLastVideosQuery:function(options){
+        this.lastVideosQuery=options;
+    },
     constructor:function(){
         this.addEventHandler(window, 'popstate' , function(e){
             var footer =   document.getElementsByTagName('footer')[0],
@@ -64,8 +71,8 @@ VideoApp = {
               footer.classList.add("hidden");
               videosList.classList.remove("hidden");
             }else{
-              footer.classList.remove("hidden");
-              videosList.classList.add("hidden");
+                footer.classList.remove("hidden");
+                videosList.classList.add("hidden");
             }
         } ,false);
 
@@ -85,8 +92,8 @@ VideoApp = {
                 App.getVideosJSON(options);
         } ,true,true)
     },
-    getVideosJSON:function(options){
-        this.lastVideosQuery=options;
+	getVideosJSON:function(options){
+        this.setLastVideosQuery(options);
         this.requestGET(options,function(txt){
             App.insertVideo(JSON.parse(txt));
         });
@@ -95,11 +102,14 @@ VideoApp = {
         var div, p, img,
             fragment = document.createDocumentFragment();
 
+        App.setLastVideosQueryResult(arr);
+
            for(var i=0; i<arr.length; i++){
               div = document.createElement('div');
               p   = document.createElement('p');
               img = document.createElement('img');
 
+              img.setAttribute('id','videoModelItem-'+i);
               img.setAttribute('src',arr[i].thumbnail_url);
               img.setAttribute('data-src',arr[i].video_url);
               img.setAttribute('data-user',arr[i].user.username);
@@ -114,8 +124,9 @@ VideoApp = {
               this.addEventHandler(img,'click',this.showVideo, true);
               fragment.appendChild(div);
            }
-           document.getElementById('videos').innerHTML="";
-           document.getElementById('videos').appendChild(fragment);
+		   
+        document.getElementById('videos').innerHTML="";
+        document.getElementById('videos').appendChild(fragment);
     },
     showVideo:function(evt){
         evt.target.parentNode.parentNode.parentNode.classList.add("hidden");
