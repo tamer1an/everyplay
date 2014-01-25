@@ -42,6 +42,7 @@ VideoApp = {
         limit:24
     },
     lastVideosQuery:{    },
+    lastVideosQueryResult:[],
     selectors:{
         videos_thumb:'section[data-role="content"] div > img'
     },
@@ -85,8 +86,14 @@ VideoApp = {
                 App.getVideosJSON(options);
         } ,true,true)
     },
-    getVideosJSON:function(options){
+    setLastVideosQueryResult:function(arr){
+        this.lastVideosQueryResult=arr;
+    },
+    setLastVideosQuery:function(options){
         this.lastVideosQuery=options;
+    },
+    getVideosJSON:function(options){
+        this.setLastVideosQuery(options);
         this.requestGET(options,function(txt){
             App.insertVideo(JSON.parse(txt));
         });
@@ -95,11 +102,14 @@ VideoApp = {
         var div, p, img,
             fragment = document.createDocumentFragment();
 
+        App.setLastVideosQueryResult(arr);
+
            for(var i=0; i<arr.length; i++){
               div = document.createElement('div');
               p   = document.createElement('p');
               img = document.createElement('img');
 
+              img.setAttribute('id','videoModelItem-'+i);
               img.setAttribute('src',arr[i].thumbnail_url);
               img.setAttribute('data-src',arr[i].video_url);
               img.setAttribute('data-user',arr[i].user.username);

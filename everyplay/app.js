@@ -28,8 +28,10 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get(['/','/replay'], routes.index);
+app.get('/', routes.index);
+app.get('/replay', routes.index);
 app.get('/users', user.list);
+
 app.get('/replay/:video', function(req, res) {
     res.send('<h1>' + req.params.video + '</h1>');
 });
