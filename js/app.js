@@ -64,8 +64,8 @@ VideoApp = {
               footer.classList.add("hidden");
               videosList.classList.remove("hidden");
             }else{
-                footer.classList.remove("hidden");
-                videosList.classList.add("hidden");
+              footer.classList.remove("hidden");
+              videosList.classList.add("hidden");
             }
         } ,false);
 
@@ -150,7 +150,7 @@ VideoApp = {
 
         footer.appendChild(fragment);
 
-        history.pushState({videoSrc: dataSet.src}, "title", "test");
+        history.pushState({videoSrc: dataSet.src}, "title", "replay");
         footer.classList.remove("hidden");
     }
 };
