@@ -306,58 +306,12 @@ var Application = (function ($) {
         };
 
         App.presenters.AppController = new AppController;
+
+        // runing tests
+        var jasmineEnv = window.jasmine.getEnv();
+        jasmineEnv.updateInterval = 1000;
+        jasmine.getEnv().addReporter(new jasmine.ConsoleReporter());
+        jasmine.getEnv().execute();
     });
     return App;
 })(jQuery);
-
-
-
-
-
-
-
-
-/*
-
-var GalleryRouter = Backbone.Router.extend({
-    routes: {
-        '': 'home',
-        'view/:id' : 'view',
-        'category/:name/p:page': 'showCategory',
-        'category/:name(/:page)' : 'showCategory',
-        'file*/
-/*path': 'download',
-        '*default': 'default'
-    },
-    home: function () {
-        alert('you are viewing home page');
-    },
-    view: function (id) {
-        alert('you are viewing an image with id of ' + id);
-    },
-    showCategory: function (name,page) {
-        alert()
-    }
-});
-
- //create new router instance
- var galleryRouter = new GalleryRouter();
-
- // without History API
- Backbone.history.start();
-
- //or
-
- // use html5 History API
- //        Backbone.history.start({pushState: true});
- //        Backbone.history.start({pushState: true, hashChange: false});
-
- //use router.navigate()
- //        galleryRouter.navigate('view/19');
- ////or
- galleryRouter.navigate('view/19', {trigger: true});
- ////or
- //        galleryRouter.navigate('view/19', {trigger: true, replace: true});
-
-
-*/
