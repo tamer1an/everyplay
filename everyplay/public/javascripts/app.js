@@ -8,14 +8,8 @@ var Application = (function ($) {
     //VIDEO LIST PAGE VIEW
     var videoListPage = Backbone.View.extend({
         el : '#videos',
-        selectors:{
-            videos_thumb:'section[data-role="content"] div > img'
-        },
-        events : {
-            'click button#add': 'addItem'
-        },
         initialize : function () {
-            _.bindAll(this, 'render','addItem','appendItem');
+            _.bindAll(this, 'render','appendItem');
 
             this.collection = App.stores.videoList;
             this.collection.bind('add', this.appendItem);
@@ -24,19 +18,10 @@ var Application = (function ($) {
         },
         render : function () {
             var self = this;
-            $(this.el).append("<button id='add'>Add list item</button>");
             $(this.el).append("<ul></ul>");
-            _(this.collection.models).each(function(item){ // in case collection is not empty
+            _(this.collection.models).each(function(item){
                 self.appendItem(item);
             }, this);
-        },
-        //Model Event Handlers
-        addItem: function(){
-            var item = new videoItem();
-            item.set({
-                part2: item.get('part2') // modify item defaults
-            });
-            this.collection.add(item); // add item to collection; view is updated via event 'add'
         },
         appendItem: function(model){
             var itemView = new ItemView({
@@ -179,29 +164,72 @@ var Application = (function ($) {
             this.render();
         },
         render : function () {
+            debugger
+            var self = this;
+            $(this.el).append("<ul></ul>");
         }
     });
 
-    //AppControler
-    var AppControler = Backbone.View.extend({
+    //AppController
+    var AppController = Backbone.View.extend({
         el : 'body',
         events : {
-            "change #video-filter" : "updateVideolist"
+            "change #video-filter" : "updateVideolist",
+            'click img': "showSingleVideo"
         },
         initialize : function () {
-            _.bindAll(this,'updateVideolist', 'render');
-           this.videoListStore  = App.stores.videoList = new videoListStore();
-           this.videoListPage   = App.views.videoList  = new videoListPage;
+            _.bindAll(this,'updateVideolist', 'render','showSingleVideo');
+
+           this.setGalleryRouter(new GalleryRouter());
+           Backbone.history.start();
+
+           this.setVideoListStore(App.stores.videoList = new videoListStore());
+           this.setVideoListPage(App.views.videoList  = new videoListPage());
 
            this.videoListStore.fetch();
 
            this.render();
         },
+
         render : function () {
 
         },
-        updateVideolist : function () {
-            alert(1)
+        updateVideolist : function (evt) {
+            alert()
+        },
+        showSingleVideo : function (evt) {
+            this.galleryRouter.navigate('view/'+evt.target.id.split("-")[1], {trigger: true});
+        },
+
+        setVideoListPage:function(videoListPage){
+            this.videoListPage = videoListPage;
+        },
+
+        setVideoListStore:function(videoListStore){
+            this.videoListStore = videoListStore;
+        },
+        setGalleryRouter:function(GalleryRouter){
+            this.galleryRouter = GalleryRouter;
+        },
+
+        getVideoListStore:function(videoListStore){
+            return this.videoListStore;
+        },
+        getGalleryRouter:function(GalleryRouter){
+            return  this.galleryRouter;
+        }
+    });
+
+    var GalleryRouter = Backbone.Router.extend({
+        routes: {
+            'view/:id': 'viewImage'
+        },
+        viewImage: function (id) {
+            debugger
+            //code here
+            alert(id)
+
+            AppController.get
         }
     });
 
@@ -211,9 +239,56 @@ var Application = (function ($) {
             e.preventDefault();
         };
 
-        App.presenters.AppControler = new AppControler;
-
+        App.presenters.AppController = new AppController;
     });
 
     return App;
 })(jQuery);
+
+
+/*
+
+var GalleryRouter = Backbone.Router.extend({
+    routes: {
+        '': 'home',
+        'view/:id' : 'view',
+        'category/:name/p:page': 'showCategory',
+        'category/:name(/:page)' : 'showCategory',
+        'file*/
+/*path': 'download',
+        '*default': 'default'
+    },
+    home: function () {
+        alert('you are viewing home page');
+    },
+    view: function (id) {
+        alert('you are viewing an image with id of ' + id);
+    },
+    showCategory: function (name,page) {
+        alert()
+    }
+});
+
+
+
+ //create new router instance
+ var galleryRouter = new GalleryRouter();
+
+ // without History API
+ Backbone.history.start();
+
+ //or
+
+ // use html5 History API
+ //        Backbone.history.start({pushState: true});
+ //        Backbone.history.start({pushState: true, hashChange: false});
+
+ //use router.navigate()
+ //        galleryRouter.navigate('view/19');
+ ////or
+ galleryRouter.navigate('view/19', {trigger: true});
+ ////or
+ //        galleryRouter.navigate('view/19', {trigger: true, replace: true});
+
+
+*/

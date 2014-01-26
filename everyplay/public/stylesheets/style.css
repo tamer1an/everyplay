@@ -41,7 +41,7 @@ footer[data-role="single-video"] > video {
   margin-left: 25%;
 }
 section[data-role="content"] > div {
-  width: 100%;
+  width: 96%;
   float: left;
   padding-top: 10px;
 }
