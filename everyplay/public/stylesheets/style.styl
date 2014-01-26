@@ -10,13 +10,15 @@ text-select()
   user-select arguments
 
 corporate-1 = #2181cf
+corporate-2 = #2c2c2d
+br = 6px
 
 body
   -webkit-font-smoothing antialiased
 
   > section[data-role="module"]
     padding 1%
-    width 80%
+    width 70%
     margin 0 auto
     font-family Arial, sans-serif
 
@@ -25,15 +27,23 @@ body
 
       fieldset
         background-color whitesmoke
-        border-radius 6px
+        border-radius br
         padding 1%
         width 20%
-        border 1px solid grey
+        border 1px solid corporate-1
 
 header h1
   text-align center
   font-size 180%
   font-family Ubuntu, sans-serif
+  background-color corporate-2
+  height 37px
+  padding 7px
+  color #cccccc
+  background-image url("https://static.everyplay.com/assets/img/new-web/logo-topbar.png")
+  background-repeat no-repeat
+  background-position: 20px 10px
+  margin-bottom 15px
 
 footer[data-role="single-video"]
     padding 10px
@@ -50,16 +60,25 @@ section[data-role="content"] > div
     padding-top 10px
 
 #videos
-  background-color gold
+  padding 2%
+  border-radius br
+  max-width 1275px
+  border 1px solid corporate-1
 
   ul li
     margin 1%
+    height 259px
+    width  23%
 
-  ul *
-   float left
+  ul li > div
+    clear both
 
   ul li > div p
-    clear left
+    clear both
+    overflow hidden
+    text-overflow ellipsis
+    width 250px
+    padding-top 5px
 
   ul li > div p:last-child
     font-weight bold
@@ -68,7 +87,7 @@ section[data-role="content"] > div
     max-width 234px
     float left
 
-  div p, div img
+  ul, li, div p, div img
     float left
 
   div img
