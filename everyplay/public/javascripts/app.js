@@ -84,14 +84,14 @@ var Application = (function ($) {
         }
     });
     var videoListStore = Backbone.Collection.extend({
-        url:'https://everyplay.com/api/videos?',
+        url:'https://everyplay.com/api/videos',
         initialize: function(){
             this.dropdown = $('#video-filter');
-            this.url += this.createGETString();
+            this.url = this.createDefaultUrl();
         },
         model: videoItem,
 
-        URL: 'https://everyplay.com/api/videos?',
+        URL: 'https://everyplay.com/api/videos',
         client_id:'336d586b6e1b5e4a0f9eaa48e7e697d8cd51db40',
         defaultVideosQuery:{
             offset:0,
@@ -99,13 +99,19 @@ var Application = (function ($) {
         },
         lastVideosQuery:{ },
         lastVideosQueryResult:[],
-
+        createDefaultUrl:function(){
+            return this.getURL(this.createGETString());
+        },
+        createSingleVideoGETString:function(id){
+            this.url = this.getURL( "/" + id + "?client_id=" + this.getClientId());
+            return this;
+        },
         createGETString:function(){
             var options = this.getDefaultVideosQuery();
             options.client_id = this.getClientId();
             options.order = this.dropdown.val();
 
-            var requestString = '';
+            var requestString = '?';
             for (var item in options){
                 requestString += [item,'=',options[item],'&'].join("")
             }
@@ -165,9 +171,8 @@ var Application = (function ($) {
             this.$el.empty();
         },
         render : function (id) {
-            var self = this,
-                content = this.$el.append($('<video> </video> <details class="r"></details><div> <img/> <p> </p> </div>'));
-            return content;
+            var self = this;
+            return this.$el.append($('<video> </video> <details class="r"></details><div> <img/> <p> </p> </div>'));
         },
         setId:function(id){
             this.id = id;
@@ -202,6 +207,8 @@ var Application = (function ($) {
         setVideoListStore:function(videoListStore){
             App.stores.videoList = videoListStore;
             this.videoListStore  = videoListStore;
+
+            return this.videoListStore;
         },
         getVideoListStore:function(){
             return this.videoListStore? this.videoListStore : false;
@@ -235,12 +242,20 @@ var Application = (function ($) {
                     },
                     videoList:function(){
                         if(!self.getVideoListStore()){
-                            self.setVideoListStore(new videoListStore());
-                            self.getVideoListStore().fetch({
-                                success: function(){
-                                    self.setVideoListPage(new videoListPage());
-                                }
-                            });
+                            self.setVideoListStore(new videoListStore())
+                                .fetch({
+                                    success: function(){
+                                        self.setVideoListPage(new videoListPage());
+                                    }
+                                });
+                        } else {
+                            var store = self.getVideoListStore();
+                                store.url = store.createDefaultUrl();
+                                store.fetch({
+                                    success: function(){
+                                        self.setVideoListPage(new videoListPage());
+                                    }
+                                });
                         }
                         this.switchViews(0);
                     }
@@ -253,21 +268,31 @@ var Application = (function ($) {
             return  this.galleryRouter;
         },
         showVideo:function(id,content){
-            if (this.getVideoListStore()){
-                var model = this.getVideoListStore().get(id),
-                    video = content.children('video'),
-                    img = content.find('img'),
-                    p = content.find('p'),
-                    details = content.find('details');
+            var video = content.children('video'),
+                img = content.find('img'),
+                p = content.find('p'),
+                details = content.find('details');
 
+            function setFooter(model) {
                 video.attr('src',model.get('video_url'));
                 img.attr('src',model.get('user').avatar_url_small);
                 p.html('test '+ model.get('user').username);
                 details.html(model.get('created_at'));
-
             }
 
-            debugger;
+            if (this.getVideoListStore()){
+                var model = this.getVideoListStore().get(id);
+                setFooter(model);
+            }else{
+                this.setVideoListStore(new videoListStore())
+                    .createSingleVideoGETString(id)
+                    .fetch({
+                        success: function(coll,data,request){
+                            var model = coll.at(0);
+                            setFooter(model);
+                        }
+                    });
+            }
 
             if(this.getVideoListPage()){
                 this.getVideoListPage().hide();
