@@ -10,6 +10,7 @@ var Application = (function ($) {
         el : '#videos',
         hide:function(){
             this.$el.hide();
+            $('aside').hide();
         },
         initialize : function () {
             _.bindAll(this,'hide', 'render','appendItem');
@@ -161,11 +162,15 @@ var Application = (function ($) {
         },
         initialize : function () {
             _.bindAll(this,'render');
-            this.render();
+            this.$el.empty();
         },
-        render : function () {
-            var self = this;
-            this.$el.append("<ul></ul>");
+        render : function (id) {
+            var self = this,
+                content = this.$el.append($('<video> </video> <details class="r"></details><div> <img/> <p> </p> </div>'));
+            return content;
+        },
+        setId:function(id){
+            this.id = id;
         }
     });
 
@@ -201,25 +206,43 @@ var Application = (function ($) {
         getVideoListStore:function(){
             return this.videoListStore? this.videoListStore : false;
         },
+        getVideoSinglePage:function(videoSinglePage){
+            return this.videoSinglePage;
+        },
+        setVideoSinglePage:function(videoSinglePage){
+            App.views.videoSingle = videoSinglePage;
+            this.videoSinglePage  = videoSinglePage;
+        },
         setGalleryRouter:function(){
             var self = this,
                 GalleryRouter = Backbone.Router.extend({
+                    listViews: $('#videos, aside').hide(),
+                    singleVideoViews: $('footer'),
                     routes: {
                         '': 'videoList',
                         'view/:id': 'viewVideo'
                     },
+                    switchViews: function(bool){
+                        this.listViews[bool?'hide':'show']();
+                        this.singleVideoViews[!bool?'hide':'show']();
+                    },
                     viewVideo: function (id) {
-                        self.showVideo(id);
+                        self.setVideoSinglePage(new videoSinglePage());
+                        var content = self.getVideoSinglePage().render();
+
+                        self.showVideo(id,content);
+                        this.switchViews(1);
                     },
                     videoList:function(){
-                        self.setVideoListStore(new videoListStore());
-                        self.getVideoListStore().fetch({
-                            success: function(){
-                                self.setVideoListPage(new videoListPage());
-                            }
-                        });
-
-                        $('#videos').show();
+                        if(!self.getVideoListStore()){
+                            self.setVideoListStore(new videoListStore());
+                            self.getVideoListStore().fetch({
+                                success: function(){
+                                    self.setVideoListPage(new videoListPage());
+                                }
+                            });
+                        }
+                        this.switchViews(0);
                     }
                 });
 
@@ -229,13 +252,26 @@ var Application = (function ($) {
         getGalleryRouter:function(){
             return  this.galleryRouter;
         },
-        showVideo:function(id){
+        showVideo:function(id,content){
             if (this.getVideoListStore()){
-                var model = this.getVideoListStore().get(id);
+                var model = this.getVideoListStore().get(id),
+                    video = content.children('video'),
+                    img = content.find('img'),
+                    p = content.find('p'),
+                    details = content.find('details');
+
+                video.attr('src',model.get('video_url'));
+                img.attr('src',model.get('user').avatar_url_small);
+                p.html('test '+ model.get('user').username);
+                details.html(model.get('created_at'));
+
             }
 
-            if(this.getVideoListPage())
+            debugger;
+
+            if(this.getVideoListPage()){
                 this.getVideoListPage().hide();
+            }
         }
     });
     //APP CONSTRUCTOR:

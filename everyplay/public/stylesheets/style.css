@@ -30,15 +30,18 @@ header h1 {
   background-position: 20px 10px;
   margin-bottom: 15px;
 }
-footer[data-role="single-video"] {
+footer[data-role="video-single"] {
   padding: 10px;
   margin: 0 auto;
 }
-footer[data-role="single-video"] > video {
-  width: 50%;
+footer[data-role="video-single"] > video {
+  width: 80%;
+  margin: 0 10%;
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
-  margin-left: 25%;
+}
+footer[data-role="video-single"] details {
+  width: 220px;
 }
 section[data-role="content"] > div {
   width: 96%;

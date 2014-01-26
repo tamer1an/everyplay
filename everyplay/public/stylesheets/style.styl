@@ -45,14 +45,17 @@ header h1
   background-position: 20px 10px
   margin-bottom 15px
 
-footer[data-role="single-video"]
+footer[data-role="video-single"]
     padding 10px
     margin 0 auto
 
     > video
-      width 50%
+      width 80%
+      margin 0 10%
       transform-rotate(180deg)
-      margin-left 25%
+
+    details
+      width 220px
 
 section[data-role="content"] > div
     width 96%
@@ -107,6 +110,8 @@ select:hover:invalid
 
 .r
   float right
+
+//MODERNIZE DETECTION CLASS
 
 //FLEX BOX
 .flexbox
