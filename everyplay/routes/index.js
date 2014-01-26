@@ -11,6 +11,7 @@ exports.index = function (req, res) {
         //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
 
         scripts: [
+            'javascripts/lib/modernizr.js',
             '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.js',
             'javascripts/lib/underscore.js',
             'javascripts/lib/backbone.js',

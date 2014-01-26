@@ -9,15 +9,31 @@ text-select()
   -o-user-select arguments
   user-select arguments
 
-body > section[data-role="module"]
-  padding 1%
-  width 80%
-  margin 0 auto
-  font-family Arial, sans-serif
+corporate-1 = #2181cf
+
+body
+  -webkit-font-smoothing antialiased
+
+  > section[data-role="module"]
+    padding 1%
+    width 80%
+    margin 0 auto
+    font-family Arial, sans-serif
+
+    aside
+      padding-bottom 1%
+
+      fieldset
+        background-color whitesmoke
+        border-radius 6px
+        padding 1%
+        width 20%
+        border 1px solid grey
 
 header h1
   text-align center
   font-size 180%
+  font-family Ubuntu, sans-serif
 
 footer[data-role="single-video"]
     padding 10px
@@ -28,12 +44,26 @@ footer[data-role="single-video"]
       transform-rotate(180deg)
       margin-left 25%
 
-section[data-role="content"] div
+section[data-role="content"] > div
     width 100%
     float left
     padding-top 10px
 
 #videos
+  background-color gold
+
+  ul li
+    margin 1%
+
+  ul *
+   float left
+
+  ul li > div p
+    clear left
+
+  ul li > div p:last-child
+    font-weight bold
+
   span
     max-width 234px
     float left
@@ -54,7 +84,13 @@ select:hover:invalid
     border 1px solid red !important
 
 .hidden
-    display none
+  display none
 
 .r
-    float right
+  float right
+
+//FLEX BOX
+.flexbox
+
+  section
+    /*background-color whitesmoke*/

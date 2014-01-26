@@ -5,12 +5,16 @@ block content
   section(class="unselectable", data-role="module")
     header
       h1 Everyplay videos
-  section(data-role="content")
-    label(for="video-filter") Filter:
-    select(id="video-filter")
-      option Staff picks
-      option(value="popularity") All games
-      option(value="popularity_alltime") Top
-      option(value="created_at") Latest
-    div(id="videos")
-  footer(data-role="single-video")
+    aside
+      fieldset
+        legend Controls:
+        label(for="video-filter") Filter:
+        select(id="video-filter")
+          option Staff picks
+          option(value="popularity") All games
+          option(value="popularity_alltime") Top
+          option(value="created_at") Latest
+    section(data-role="content")
+
+      div(id="videos", data-role="video-list")
+    footer(data-role="video-single")
