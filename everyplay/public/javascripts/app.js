@@ -43,17 +43,14 @@ var Application = (function ($) {
         },
         render: function(){
             var p   = $(['<div>','<p>',this.model.get('title') ,'</p>','<p>', this.model.get('user').username ,'</p>','</div>'].join("")),
-                img = $('<img>',{
-                    'id'          : 'videoModelItem-'+ this.model.get('id'),
-                    'src'         : this.model.get('thumbnail_url'),
-                    'data-src'    : this.model.get('video_url'),
-                    'data-user'   : this.model.get('user').username,
-                    'data-date'   : this.model.get('created_at'),
-                    'data-title'  : this.model.get('title'),
-                    'data-avatar' : this.model.get('avatar_url_small')
+
+                picture = $('<picture>',{
+                    'id' : 'videoModelItem-'+ this.model.get('id')
+                }).css({
+                    backgroundImage: 'url("'+this.model.get('thumbnail_url')+'")'
                 });
 
-            this.$el.append([img,p]);
+            this.$el.append([picture,p]);
             return this;
         }
     });
@@ -61,7 +58,12 @@ var Application = (function ($) {
     var videoSinglePage = Backbone.View.extend({
         el : 'footer',
         events : {
-            // "load" :function(e) { alert(e.type); },
+            'click video': function(evt){
+                if (evt.target.paused)
+                    evt.target.play()
+                else
+                    evt.target.pause()
+            }
         },
         initialize : function () {
             _.bindAll(this,'render');
@@ -181,7 +183,7 @@ var Application = (function ($) {
         el : 'body',
         events : {
             "change #video-filter" : "updateVideolist",
-            'click img': "showSingleVideo"
+            'click picture': "showSingleVideo"
         },
         initialize : function () {
             _.bindAll(this,'setGalleryRouter','updateVideolist', 'render','showSingleVideo','fetchVideoListStore');
@@ -252,6 +254,8 @@ var Application = (function ($) {
                         this.switchViews(1);
                     },
                     videoList:function(){
+                        self.$el.find('#videos').empty();
+
                         if(!self.getVideoListStore()){
                             self.setVideoListStore(new videoListStore());
                         }
@@ -304,6 +308,8 @@ var Application = (function ($) {
         document.ontouchmove = function(e){
             e.preventDefault();
         };
+
+//        Modernizr.video
 
         App.presenters.AppController = new AppController;
 
