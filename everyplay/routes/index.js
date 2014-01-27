@@ -11,6 +11,7 @@ exports.index = function (req, res) {
         //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
 
         scripts: [
+          //TODO: Optimize app and devide functionality to modules  'javascripts/lib/require.js',
             'javascripts/lib/jasmine-2.0.0/jasmine31.js',
             'javascripts/lib/jasmine-2.0.0/console_reporter.js',
 //            'javascripts/lib/jasmine-html.js',

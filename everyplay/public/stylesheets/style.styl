@@ -11,6 +11,8 @@ text-select()
 
 corporate-1 = #2181cf
 corporate-2 = #2c2c2d
+
+corporate-new-1 = #f5f5f5
 br = 6px
 
 body
@@ -57,6 +59,15 @@ footer[data-role="video-single"]
     details
       width 220px
 
+    @media screen and (min-width: 600px)
+      background-color red
+
+    @media screen and (min-width: 800px)
+      background-color green
+
+    @media screen and (min-width: 1000px)
+      background-color corporate-new-1
+
 section[data-role="content"] > div
     width 96%
     float left
@@ -67,6 +78,15 @@ section[data-role="content"] > div
   border-radius br
   max-width 1275px
   border 1px solid corporate-1
+
+  @media screen and (min-width: 600px)
+    background-color red
+
+  @media screen and (min-width: 800px)
+    background-color green
+
+  @media screen and (min-width: 1000px)
+    background-color corporate-new-1
 
   ul
     overflow hidden
@@ -130,3 +150,10 @@ select:hover:invalid
 
   section
     /*background-color whitesmoke*/
+
+/*
+ Device media queries
+    @media only screen and (min-device-width: 640px) and (max-device-width: 960px) { }
+    @media only screen and (-webkit-min-device-pixel-ratio : 1.5) and (orientation : landscape), only screen and (min-device-pixel-ratio : 1.5) and (orientation : landscape) { }
+    @media only screen and (-webkit-min-device-pixel-ratio : 1.5) and (orientation : portrait), only screen and (min-device-pixel-ratio : 1.5) and (orientation : portrait) { }
+*/

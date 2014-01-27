@@ -43,6 +43,21 @@ footer[data-role="video-single"] > video {
 footer[data-role="video-single"] details {
   width: 220px;
 }
+@media screen and (min-width: 600px) {
+  footer[data-role="video-single"] {
+    background-color: #f00;
+  }
+}
+@media screen and (min-width: 800px) {
+  footer[data-role="video-single"] {
+    background-color: #008000;
+  }
+}
+@media screen and (min-width: 1000px) {
+  footer[data-role="video-single"] {
+    background-color: #f5f5f5;
+  }
+}
 section[data-role="content"] > div {
   width: 96%;
   float: left;
@@ -53,6 +68,21 @@ section[data-role="content"] > div {
   border-radius: 6px;
   max-width: 1275px;
   border: 1px solid #2181cf;
+}
+@media screen and (min-width: 600px) {
+  #videos {
+    background-color: #f00;
+  }
+}
+@media screen and (min-width: 800px) {
+  #videos {
+    background-color: #008000;
+  }
+}
+@media screen and (min-width: 1000px) {
+  #videos {
+    background-color: #f5f5f5;
+  }
 }
 #videos ul {
   overflow: hidden;
@@ -120,3 +150,9 @@ select:hover:invalid {
 .r {
   float: right;
 }
+/*
+ Device media queries
+    @media only screen and (min-device-width: 640px) and (max-device-width: 960px) { }
+    @media only screen and (-webkit-min-device-pixel-ratio : 1.5) and (orientation : landscape), only screen and (min-device-pixel-ratio : 1.5) and (orientation : landscape) { }
+    @media only screen and (-webkit-min-device-pixel-ratio : 1.5) and (orientation : portrait), only screen and (min-device-pixel-ratio : 1.5) and (orientation : portrait) { }
+*/
