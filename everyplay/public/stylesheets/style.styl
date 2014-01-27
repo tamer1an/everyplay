@@ -79,15 +79,6 @@ section[data-role="content"] > div
   max-width 1275px
   border 1px solid corporate-1
 
-  @media screen and (min-width: 600px)
-    background-color red
-
-  @media screen and (min-width: 800px)
-    background-color green
-
-  @media screen and (min-width: 1000px)
-    background-color corporate-new-1
-
   ul
     overflow hidden
     padding-bottom 80px
@@ -96,7 +87,6 @@ section[data-role="content"] > div
     margin 1% 1% 5% 1%
     height 259px
     width  23%
-    /*margin-top 4%*/
 
   ul li > div
     clear both
@@ -107,7 +97,7 @@ section[data-role="content"] > div
     text-overflow ellipsis
     width 250px
     padding-top 5px
-    max-height 30px
+    max-height 34px
 
   ul li > div p:last-child
     font-weight bold
@@ -149,6 +139,32 @@ select:hover:invalid
 .flexbox
 
   section
+
+    #videos
+      @media screen and (min-width: 800px)
+
+        picture
+          height: 160px
+
+        ul li
+          height 200px
+
+        ul li > div p
+          width  73%
+
+      @media screen and (min-width: 600px)
+        picture
+          height: 230px
+
+        ul li
+          height 240px
+
+        ul li > div p
+          width 73%
+
+
+
+
     /*background-color whitesmoke*/
 
 /*
