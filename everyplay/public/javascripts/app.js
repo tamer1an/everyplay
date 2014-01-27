@@ -5,6 +5,7 @@ var Application = (function ($) {
         presenters : {}
     };
 
+//VIEWS
     //VIDEO LIST PAGE VIEW
     var videoListPage = Backbone.View.extend({
         el : '#videos',
@@ -34,16 +35,53 @@ var Application = (function ($) {
             $('ul', this.el).append(itemView.render().el);
         }
     });
+    //VIDEO LIST ITEM VIEW
+    var ItemView = Backbone.View.extend({
+        tagName: 'li',
+        initialize: function(){
+            _.bindAll(this, 'render');
+        },
+        render: function(){
+            var p   = $(['<div>','<p>',this.model.get('title') ,'</p>','<p>', this.model.get('user').username ,'</p>','</div>'].join("")),
+                img = $('<img>',{
+                    'id'          : 'videoModelItem-'+ this.model.get('id'),
+                    'src'         : this.model.get('thumbnail_url'),
+                    'data-src'    : this.model.get('video_url'),
+                    'data-user'   : this.model.get('user').username,
+                    'data-date'   : this.model.get('created_at'),
+                    'data-title'  : this.model.get('title'),
+                    'data-avatar' : this.model.get('avatar_url_small')
+                });
+
+            this.$el.append([img,p]);
+            return this;
+        }
+    });
+    //SINGLE VIDEO PAGE VIEW
+    var videoSinglePage = Backbone.View.extend({
+        el : 'footer',
+        events : {
+            // "load" :function(e) { alert(e.type); },
+        },
+        initialize : function () {
+            _.bindAll(this,'render');
+            this.$el.empty();
+        },
+        render : function (id) {
+            var self = this;
+            return this.$el.append($('<video> </video> <details class="r"></details><div> <img/> <p> </p> </div>'));
+        },
+        setId:function(id){
+            this.id = id;
+        }
+    });
 
 //// MODEL & COLLECTIONS
     var videoItem = Backbone.Model.extend({
-//        url:'https://everyplay.com/api/videos',
+//      url:'https://everyplay.com/api/videos',
         defaults:function(){
 
             return  { // video Entity
-                part1: 'hello',
-                part2: 'world',
-
                 base_url: "url",
                 camera_crop: true,
                 comment_count: 0,
@@ -138,48 +176,7 @@ var Application = (function ($) {
         }
     });
 
-    var ItemView = Backbone.View.extend({
-        tagName: 'li',
-        initialize: function(){
-            _.bindAll(this, 'render');
-        },
-        render: function(){
-            var p   = $(['<div>','<p>',this.model.get('title') ,'</p>','<p>', this.model.get('user').username ,'</p>','</div>'].join("")),
-                img = $('<img>',{
-                    'id'          : 'videoModelItem-'+ this.model.get('id'),
-                    'src'         : this.model.get('thumbnail_url'),
-                    'data-src'    : this.model.get('video_url'),
-                    'data-user'   : this.model.get('user').username,
-                    'data-date'   : this.model.get('created_at'),
-                    'data-title'  : this.model.get('title'),
-                    'data-avatar' : this.model.get('avatar_url_small')
-                });
-
-            this.$el.append([img,p]);
-            return this;
-        }
-    });
-
-    //Single Video Page
-    var videoSinglePage = Backbone.View.extend({
-        el : 'footer',
-        events : {
-            // "load" :function(e) { alert(e.type); },
-        },
-        initialize : function () {
-            _.bindAll(this,'render');
-            this.$el.empty();
-        },
-        render : function (id) {
-            var self = this;
-            return this.$el.append($('<video> </video> <details class="r"></details><div> <img/> <p> </p> </div>'));
-        },
-        setId:function(id){
-            this.id = id;
-        }
-    });
-
-    //AppController
+//PRESENTERS
     var AppController = Backbone.View.extend({
         el : 'body',
         events : {
@@ -187,12 +184,14 @@ var Application = (function ($) {
             'click img': "showSingleVideo"
         },
         initialize : function () {
-            _.bindAll(this,'setGalleryRouter','updateVideolist', 'render','showSingleVideo');
+            _.bindAll(this,'setGalleryRouter','updateVideolist', 'render','showSingleVideo','fetchVideoListStore');
            this.setGalleryRouter();
         },
         render : function () { },
         updateVideolist : function (evt) {
-            alert()
+            this.getVideoListStore().remove();
+            this.$el.find('#videos').empty();
+            this.fetchVideoListStore();
         },
         showSingleVideo : function (evt) {
             this.galleryRouter.navigate('view/'+evt.target.id.split("-")[1], {trigger: true});
@@ -220,6 +219,18 @@ var Application = (function ($) {
             App.views.videoSingle = videoSinglePage;
             this.videoSinglePage  = videoSinglePage;
         },
+
+        fetchVideoListStore:function(){
+            self = this;
+
+            var store = self.getVideoListStore();
+            store.url = store.createDefaultUrl();
+            store.fetch({
+                success: function(){
+                    self.setVideoListPage(new videoListPage());
+                }
+            });
+        },
         setGalleryRouter:function(){
             var self = this,
                 GalleryRouter = Backbone.Router.extend({
@@ -242,21 +253,9 @@ var Application = (function ($) {
                     },
                     videoList:function(){
                         if(!self.getVideoListStore()){
-                            self.setVideoListStore(new videoListStore())
-                                .fetch({
-                                    success: function(){
-                                        self.setVideoListPage(new videoListPage());
-                                    }
-                                });
-                        } else {
-                            var store = self.getVideoListStore();
-                                store.url = store.createDefaultUrl();
-                                store.fetch({
-                                    success: function(){
-                                        self.setVideoListPage(new videoListPage());
-                                    }
-                                });
+                            self.setVideoListStore(new videoListStore());
                         }
+                        self.fetchVideoListStore();
                         this.switchViews(0);
                     }
                 });
@@ -299,6 +298,7 @@ var Application = (function ($) {
             }
         }
     });
+
     //APP CONSTRUCTOR:
     $(document).ready(function() {
         document.ontouchmove = function(e){
@@ -313,5 +313,6 @@ var Application = (function ($) {
         jasmine.getEnv().addReporter(new jasmine.ConsoleReporter());
         jasmine.getEnv().execute();
     });
+
     return App;
 })(jQuery);
