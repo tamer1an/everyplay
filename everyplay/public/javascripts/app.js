@@ -1,4 +1,6 @@
 var Application = (function ($) {
+    return;
+    
     var App = {
         stores : {},
         views : {},

@@ -4,17 +4,14 @@ block content
   //p Welcome to #{title}
   section(class="unselectable", data-role="module")
     header
-      h1 Videos
-    aside
+      h1 URLS PARSER
+    form
       fieldset
-        legend Controls:
-        label(for="video-filter") Filter:
-        select(id="video-filter")
-          option Staff picks
-          option(value="popularity") All games
-          option(value="popularity_alltime") Top
-          option(value="created_at") Latest
-    section(data-role="content")
-
-      div(id="videos", data-role="video-list")
-    footer(data-role="video-single")
+        legend URLS:
+        ul
+          li
+            span URL-1
+            input(type="text")
+          li
+            span URL-2
+            input(type="text")
