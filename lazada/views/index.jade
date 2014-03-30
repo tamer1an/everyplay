@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  //p Welcome to #{title}
+  section(class="unselectable", data-role="module", ng-app="app")
+    header
+      h1 URLS PARSER
+    form(ng-controller="ParserCtrl")
+      fieldset
+        legend URLS:
+        ul
+          li
+            span URL-1
+              input(type="url", ng-model="formData.url1", autofocus="true" , title="Please enter url...", placeholder="http://url.to.compare" )
+          li
+            span URL-2
+            input(type="url", ng-model="formData.url2", title="Please enter url...", placeholder="http://url.to.compare")
+        input(type="button",ng-click="compare()",value="Comapre")
+
+    footer
