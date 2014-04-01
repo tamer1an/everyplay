@@ -29,12 +29,34 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/replay', routes.index);
-app.get('/users', user.list);
 
-app.get('/replay/:video', function(req, res) {
-    res.send('<h1>' + req.params.video + '</h1>');
+app.get('/compare/:url1/:url2', function(req, res) {
+//    res.send('<h1>' + req.params.video + '</h1>');
+    console.log(req,res);
+
+//    ‌‌req.params.url1
+//    var ulr1 = ‌‌req.params.url2;
+
+    var body1,body2,mainRequest = req,content=false;
+
+    var request = require('request');
+    request('http://www.lazada.vn/'+mainRequest.param('url1')+'.html', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body) // Print the google web page.
+            body1 = body;
+
+            request('http://www.lazada.vn/'+mainRequest.param('url1')+'.html', function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    console.log(body) // Print the google web page.
+                    body2 = body;
+                    content = '<div id="compare_1">'+body1+'</div>'+'<div id="compare_2">'+body2+'</div>'
+                    res.send(content);
+                }
+            });
+        }
+    });
 });
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

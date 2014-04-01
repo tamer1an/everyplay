@@ -7,17 +7,21 @@ angular.module('app').controller('ParserCtrl',function($scope,$window,$location,
     $scope.formData = {};
     $scope.compare = function(e){
 
-        getUrl(this.formData.url1)
-        getUrl(this.formData.url2)
+        getUrl('compare/'+this.formData.url1+'/'+this.formData.url2);
 
         function getUrl (url) {
             $http({
-                method  : 'POST',
+                method  : 'GET',
                 url     : url,
-                headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+                headers : { 'Content-Type': 'text/html' }
             })
                 .success(function(data) {
 //                 show comparesing data on success
+                    var xmlString = data
+//                        , parser = new DOMParser()
+//                        , doc = parser.parseFromString(xmlString, "text/xml")
+
+
                 }).error(function(data, status, headers, config) {
 //                 show error message
                 });
