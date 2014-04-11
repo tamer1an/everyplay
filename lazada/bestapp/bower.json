@@ -1,0 +1,14 @@
+{
+    "name": "visonic-interactive",
+    "version": "0.0.0",
+	"main": "static/css/main.css",
+    "ignore": [
+        ".jshintrc",
+        "**/*.txt"
+    ],
+    "dependencies": {
+        "angular": "1.2.15",
+		"bootstrap-styl" : "*",
+		"jquery": "*"
+    }
+}

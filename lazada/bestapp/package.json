@@ -1,0 +1,25 @@
+{
+  "name": "visonic-interactive",
+  "version": "0.0.0",
+  "description": "VISONIC MOBILE PANEL",
+  "main": "app.js",
+  "scripts": {
+   "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/divan/tyco.git"
+  },
+  "author": "Andrii Trybynenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/divan/tyco/issues"
+  },
+  "homepage": "https://SERVER_IP/mobile/PANEL_WEB_ID/",
+  "dependencies": {
+    "express": "*",
+	"jade": "*",
+	"stylus": "*"
+  }
+}
