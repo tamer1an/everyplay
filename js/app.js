@@ -35,134 +35,18 @@ var Factory = function(){
 };
 
 VideoApp = {
-    URL: 'https://everyplay.com/api/videos?',
-    client_id:'336d586b6e1b5e4a0f9eaa48e7e697d8cd51db40',
-    defaultVideosQuery:{
-        offset:0,
-        limit:24
-    },
-    lastVideosQuery:{    },
-    lastVideosQueryResult:[],
     selectors:{
-        videos_thumb:'section[data-role="content"] div > img'
+        
     },
     extend:'Utils',
-    getDefaultVideosQuery:function(){
-        return this.defaultVideosQuery;
-    },
-    getClientId:function(){
-        return this.client_id;
-    },
-    getURL:function(options){
-        return this.URL+options;
-    },
-	setLastVideosQueryResult:function(arr){
-        this.lastVideosQueryResult=arr;
-    },
-    setLastVideosQuery:function(options){
-        this.lastVideosQuery=options;
-    },
+   
     constructor:function(){
-        this.addEventHandler(window, 'popstate' , function(e){
-            var footer =   document.getElementsByTagName('footer')[0],
-                videosList =   document.querySelector('section[data-role="content"]');
-
-            if(e.state == undefined){
-              footer.classList.add("hidden");
-              videosList.classList.remove("hidden");
-            }else{
-                footer.classList.remove("hidden");
-                videosList.classList.add("hidden");
-            }
-        } ,false);
-
+        // this.addEventHandler(window, 'popstate' , function(e){
+        // } ,false);
         this.init();
     },
     init : function(){
-        var options = this.getDefaultVideosQuery();
-            options.client_id = this.getClientId();
 
-        this.getVideosJSON(options);
-
-        this.addEventHandler(document.getElementById('video-filter'),'change',function(evt){
-            var options = App.getDefaultVideosQuery();
-                options.client_id = App.getClientId();
-                options.order = evt.target.selectedOptions[0].value;
-
-                App.getVideosJSON(options);
-        } ,true,true)
-    },
-	getVideosJSON:function(options){
-        this.setLastVideosQuery(options);
-        this.requestGET(options,function(txt){
-            App.insertVideo(JSON.parse(txt));
-        });
-    },
-    insertVideo:function(arr){
-        var div, p, img,
-            fragment = document.createDocumentFragment();
-
-        App.setLastVideosQueryResult(arr);
-
-           for(var i=0; i<arr.length; i++){
-              div = document.createElement('div');
-              p   = document.createElement('p');
-              img = document.createElement('img');
-
-              img.setAttribute('id','videoModelItem-'+i);
-              img.setAttribute('src',arr[i].thumbnail_url);
-              img.setAttribute('data-src',arr[i].video_url);
-              img.setAttribute('data-user',arr[i].user.username);
-              img.setAttribute('data-date',arr[i].created_at);
-              img.setAttribute('data-title',arr[i].title);
-              img.setAttribute('data-avatar',arr[i].user.avatar_url_small);
-
-              p.innerHTML = ['<span>',arr[i].title ,'</span>','<br>','<b>', arr[i].user.username ,'</b>'].join("")
-              div.appendChild(img);
-              div.appendChild(p);
-
-              this.addEventHandler(img,'click',this.showVideo, true);
-              fragment.appendChild(div);
-           }
-		   
-        document.getElementById('videos').innerHTML="";
-        document.getElementById('videos').appendChild(fragment);
-    },
-    showVideo:function(evt){
-        evt.target.parentNode.parentNode.parentNode.classList.add("hidden");
-        var footer = App.dqAll('footer[data-role="single-video"]')[0],
-            fragment = document.createDocumentFragment(),
-            h1   = document.createElement('h1'),
-            video = document.createElement('video'),
-
-            div = document.createElement('div'),
-            img   = document.createElement('img'),
-            p1   = document.createElement('p'),
-            p2   = document.createElement('p'),
-
-            dataSet = evt.target.dataset;
-
-        footer.innerHTML=""
-
-        video.setAttribute('src', dataSet.src);
-        h1.innerHTML  = dataSet.title;
-
-        img.setAttribute('src',dataSet.avatar);
-        p1.innerHTML = dataSet.user;
-        p2.innerHTML = dataSet.date;
-        p2.setAttribute('class','r');
-        div.appendChild(img);
-        div.appendChild(p2);
-        div.appendChild(p1);
-
-        fragment.appendChild(h1);
-        fragment.appendChild(video);
-        fragment.appendChild(div);
-
-        footer.appendChild(fragment);
-
-        history.pushState({videoSrc: dataSet.src}, "title", "replay");
-        footer.classList.remove("hidden");
     }
 };
 
