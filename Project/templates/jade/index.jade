@@ -1,0 +1,24 @@
+extends layout
+block metaBlock
+    meta(charset="utf-8")
+    title Shoping cart
+    meta(name="author", content="Andrii Trybynenko")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.9, user-scalable=yes")
+    link(href='images/favicon.ico', rel='shortcut icon', type='image/x-icon')
+
+block websoket_setup
+    script(src="http://localhost:8888/socket.io/socket.io.js")
+    script(src="/js/nodejs/io-bootstrap.js")
+
+block libs
+    script(src="/vendor/modernizer/modernizr.js")
+
+block app
+    script(src="/js/nodejs/bootstrap.js")
+
+block app_prod
+    script(src="/js/bootstrap.js")
+
+block app_manual
+    script(src="/js/app.js")
+
