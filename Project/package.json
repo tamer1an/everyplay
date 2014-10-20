@@ -1,0 +1,32 @@
+{
+  "name": "Cart",
+  "version": "0.0.0",
+  "description": "Shoping Cart",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrii Trybynenko",
+  "license": "ISC",
+  "repository": {
+    "type": "",
+    "url": "//"
+  },
+  "unit-test":{
+    "engine": "karama",
+    "url": "test/unit/coffe/mainSpec.coffee"
+  },
+  "devDependencies": {
+        "jade":       "*",
+        "stylus":     "*",
+        "express":    "*",
+        "socket.io":  "*"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "bugs": {
+    "url": "http://10.51.101.14/",
+    "url2": "http://10.51.110.100:8282/issue/PM-16"
+  },
+}
