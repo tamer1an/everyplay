@@ -7,14 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Andrii Trybynenko",
-  "license": "ISC",
   "repository": {
     "type": "",
     "url": "//"
   },
   "unit-test":{
     "engine": "karama",
-    "url": "test/unit/coffe/mainSpec.coffee"
+    "url": "test/unit/coffee/"
   },
   "devDependencies": {
         "jade":       "*",
@@ -26,7 +25,7 @@
     "node": ">=0.10.0"
   },
   "bugs": {
-    "url": "http://10.51.101.14/",
-    "url2": "http://10.51.110.100:8282/issue/PM-16"
-  },
+    "url": "",
+    "url2": ""
+  }
 }
