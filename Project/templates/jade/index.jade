@@ -6,19 +6,17 @@ block metaBlock
     meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.9, user-scalable=yes")
     link(href='images/favicon.ico', rel='shortcut icon', type='image/x-icon')
 
-block websoket_setup
-    script(src="http://localhost:8888/socket.io/socket.io.js")
-    script(src="/js/nodejs/io-bootstrap.js")
+// block websoket_setup
+//     script(src="https://web-node-c9-tamer1an.c9.io/socket.io/socket.io.js")
+//     script(src="/js/nodejs/io-bootstrap.js")
 
 block libs
-    script(src="/vendor/modernizer/modernizr.js")
+    script(src="/js/utils/factory.js")
+    // script(src="/js/vendor/modernizer/modernizr.js")
 
-block app
-    script(src="/js/nodejs/bootstrap.js")
+block app_dev
+    script(src="/js/app/app.js")
 
-block app_prod
-    script(src="/js/bootstrap.js")
-
-block app_manual
-    script(src="/js/app.js")
+block app_lunch
+    script(src="/js/lunch.js")
 

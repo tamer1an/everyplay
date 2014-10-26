@@ -1,0 +1,11 @@
+{
+    "name": "shoping-cart",
+    "version": "0.0.0",
+    "ignore": [
+        ".jshintrc",
+        "**/*.txt"
+    ],
+    "dependencies": {
+        "lodash" : "*"
+    }
+}

@@ -1,4 +1,4 @@
-App = {
+var App = {
     selectors:{
         
     },
@@ -7,6 +7,7 @@ App = {
     constructor:function(){
         // this.addEventHandler(window, 'popstate' , function(e){
         // } ,false);
+        debugger
         this.init();
     },
     init : function(){

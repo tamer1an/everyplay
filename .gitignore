@@ -1,3 +1,8 @@
+/.c9/*.*
+.c9/
+
+Project/static/js/vendor/*.*
+Project/static/js/vendor
 
 /Project/node_modules/
 Project/node_modules/
