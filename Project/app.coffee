@@ -38,3 +38,12 @@ server = http.createServer(app).listen app.get('port'), ->
 #io.emit 'entrance', message: 'entrance!'
 #io.on 'disconnect', -> io.emit 'exit', message: 'exit'
 #io.on 'chat',-> io.emit 'chat', message: '# ' + data.message
+
+#// reference the http module so we can create a webserver
+#var http = require("http");
+#
+#// create a server
+#http.createServer(function(req, res) {
+    #// on every request, we'll output 'Hello world'
+    #res.end("Hello world from Cloud9!");
+#}).listen(process.env.PORT, process.env.IP);

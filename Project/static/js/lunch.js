@@ -6,6 +6,7 @@
 
 
 window.onload = function(){
+    debugger
     var f = new Factory();
     window.App = f.createNewObj('App');
 };

@@ -1,11 +1,12 @@
 {
-    "name": "shoping-cart",
+    "name": "gallery-app",
     "version": "0.0.0",
     "ignore": [
         ".jshintrc",
         "**/*.txt"
     ],
     "dependencies": {
-        "lodash" : "*"
+        "lodash" : "*",
+        "angularjs":"*"
     }
 }
