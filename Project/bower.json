@@ -7,6 +7,9 @@
     ],
     "dependencies": {
         "lodash" : "*",
-        "angularjs":"*"
+        "angularjs":"*",
+        "angular-material":"*",
+        "material-design-icons":"*",
+        "bootstrap-material-design":"*"
     }
 }
