@@ -3,27 +3,19 @@
 //     console.log(data);
 //     socket.emit('my other event', { my: 'data' });
 //   });
-
 // window.onload = function(){
 //     debugger
 //     var f = new Factory();
 //     window.App = f.createNewObj('App');
 // };
-
 // debugger
 
-debugger
-Modernizr.load([{
-        test : typeof(angular) == "object",
+Modernizr.load([[{
+        test : !angular,
         nope : [
-            '/js/vendor/angular/angular.js'
+            '/css/mainGallery.css',
+            '/js/app/galleryapp/app.js',
+            '/js/app/galleryapp/controllers/fileGallery.js'
         ]
-    },[{
-        test : false,
-        nope : [
-            '/css/main.css',
-            '/js/app/app.js',
-            '/js/app/controllers/fileGallery.js'
-        ]
-    }],['js/app/init.js']
+    }],['js/app/galleryapp/init.js']
 ]);

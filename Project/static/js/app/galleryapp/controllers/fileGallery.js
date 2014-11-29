@@ -10,7 +10,7 @@
  */
 angular.module('galleryApp')
        .controller('mainViewCtrl', function ($scope) {
-       debugger
+       
 });
 
 

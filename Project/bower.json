@@ -1,15 +1,12 @@
 {
-    "name": "gallery-app",
+    "name": "mb-app",
     "version": "0.0.0",
     "ignore": [
         ".jshintrc",
         "**/*.txt"
     ],
     "dependencies": {
-        "lodash" : "*",
-        "angularjs":"*",
-        "angular-material":"*",
-        "material-design-icons":"*",
-        "bootstrap-material-design":"*"
+        "bootstrap-material-design":"*",
+        "angular-route":"*"
     }
 }
