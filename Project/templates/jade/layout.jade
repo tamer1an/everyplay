@@ -9,6 +9,8 @@ html(lang="en")
         block libs_manual_include
         // App
         block app_lunch
-
-    body ng-app="frameApp") 
-        div.fGallery(filegallery)
+        
+    body
+        main
+            div(filegallery)
+            div(ng-view)

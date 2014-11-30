@@ -5,24 +5,18 @@ var galleryApp = {
 };
 
 /**
- *  @name {galleryApp}
- *  @description {Root derective}
- *  @module {galleryApp}
+ *  @name {filegallery}
+ *  @description {Root filegallery derective}
+ *  @module {filegallery}
  */
 angular.module('galleryApp').directive('filegallery', function() {
     return {
         restrict: 'A',
         replace: true,
-        templateUrl: '/html/fileGallery.html',
+        templateUrl: '/html/fileGallery/fileGallery.html',
         controller: 'mainViewCtrl',
         link: function($scope,element){
             
-            // video target element
-            // $scope.videoElement = document.getElementById(element[0].dataset.target);
-            // video elem sizes
-            // $scope.rect = $scope.videoElement.getClientRects()[0];
-            // Ipmp page always starts from event video tab active and we by default making updateEventId
-            // $scope.updateEventId();
         }
     }
 });

@@ -1,49 +1,47 @@
 'use strict';
 
 /* App Module */
-var FRAMEApp = angular.module('frameApp', [
-  'ngRoute',
-  'frameControllers'
-// , 'phonecatFilters'
-// , 'phonecatServices'
+angular.module('frameApp', [
+  'ngRoute'
+  , 'frameControllers'
+  , 'galleryApp'
 ]);
 
-FRAMEApp.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-      when('/phones', {
-        templateUrl: 'partials/phone-list.html',
-        controller: 'PhoneListCtrl'
-      }).
-      when('/phones/:phoneId', {
-        templateUrl: 'partials/phone-detail.html',
-        controller: 'PhoneDetailCtrl'
-      }).
-      otherwise({
-        redirectTo: '/phones'
-      });
-  }]);
-
+// angular.module('frameApp').config(['$routeProvider',
+//   function($routeProvider) {
+//     $routeProvider.
+//       when('/phones', {
+//         templateUrl: 'partials/phone-list.html',
+//         controller: 'PhoneListCtrl'
+//       })
+//       .when('/phones/:phoneId', {
+//         templateUrl: 'partials/phone-detail.html',
+//         controller: 'PhoneDetailCtrl'
+//       })
+//       .otherwise({
+//         redirectTo: '/phones'
+//       });
+//   }]);
 
 /* Controllers */
 angular.module('frameControllers', []);
 
-angular.module('frameControllers').controller('PhoneListCtrl', ['$scope', 'Phone',
-  function($scope, Phone) {
-    $scope.phones = Phone.query();
-    $scope.orderProp = 'age';
-  }]);
+// angular.module('frameControllers').controller('PhoneListCtrl', ['$scope', 'Phone',
+//   function($scope, Phone) {
+//     $scope.phones = Phone.query();
+//     $scope.orderProp = 'age';
+//   }]);
 
-angular.module('frameControllers').controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
-  function($scope, $routeParams, Phone) {
-    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
-      $scope.mainImageUrl = phone.images[0];
-    });
+// angular.module('frameControllers').controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
+//   function($scope, $routeParams, Phone) {
+//     $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
+//       $scope.mainImageUrl = phone.images[0];
+//     });
 
-    $scope.setImage = function(imageUrl) {
-      $scope.mainImageUrl = imageUrl;
-    }
-  }]);
+//     $scope.setImage = function(imageUrl) {
+//       $scope.mainImageUrl = imageUrl;
+//     }
+//   }]);
 
 
 /* Filters */
@@ -58,10 +56,8 @@ angular.module('frameControllers').controller('PhoneDetailCtrl', ['$scope', '$ro
 // .filter('active', function() {
 //     return function(conn) {
 //         var connStyle = '';
-          
 //           connStyle += (conn.from)? ' btop-green '    : ' btop-red '    ;
 //           connStyle += (conn.to)?  ' bbottom-green ' : ' bbottom-red ' ;
-        
 //         return connStyle;
 //     };
 // });
@@ -69,7 +65,6 @@ angular.module('frameControllers').controller('PhoneDetailCtrl', ['$scope', '$ro
 /* Services */
 
 // var phonecatServices = angular.module('phonecatServices', ['ngResource']);
-
 // phonecatServices.factory('Phone', ['$resource',
 //   function($resource){
 //     return $resource('phones/:phoneId.json', {}, {

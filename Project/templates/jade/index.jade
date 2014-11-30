@@ -6,10 +6,6 @@ block metaBlock
     meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.9, user-scalable=yes")
     link(href='images/favicon.ico', rel='shortcut icon', type='image/x-icon')
 
-// block websocket_setup
-//     script(src="https://web-node-c9-tamer1an.c9.io/socket.io/socket.io.js")
-//     script(src="/js/nodejs/io-bootstrap.js")
-
 block libs_lazy_load_modernizer
     script(src="/js/vendor/modernizr/modernizr.js")
     
@@ -17,20 +13,13 @@ block libs_manual_include
     script(src="/js/vendor/modernizr/modernizr.js")
     script(src="/js/vendor/angular/angular.js")
     script(src="/js/vendor/angular-route/angular-route.js")
-    script(src="/js/app/frameApp.js")
-    // script(src="/js/vendor/angular/angular.js")
-    // script(src="/js/app/app.js")
-    // script(src="/js/app/controllers/fileGallery.js")
 
 block libs_manual_include_min
     script(src="/js/vendor/modernizr/modernizr.js")
     script(src="/js/vendor/angular/angular.min.js")
     script(src="/js/vendor/angular-route/angular-route.min.js")
-    script(src="/js/app/frameApp.js")
-
-block app
-    // script(src="/js/app/app.js")
 
 block app_lunch
-    script(src="/js/lunch.js")
+    script(src="/js/app/frameApp.js")
+    script(src="/js/app/lunch.js")
 

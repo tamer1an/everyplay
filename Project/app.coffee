@@ -18,8 +18,7 @@ app.get '/url/:folder/:file', (res,req) ->
     'Location': '/images/'+res.params.folder+'/'+res.params.file
   req.end()
 
-#sourceMappingURL="/js/application/panelweb/modules/virtual-keypad/static//src/keypad.styl.map
-app.get '/js/application/panelweb/modules/virtual-keypad/templates/css/stylus/:folder/:file', (res,req) ->
+app.get '/templates/css/stylus/:folder/:file', (res,req) ->
   req.writeHead 302,
     'Location': '/templates/css/stylus/'+res.params.folder+'/'+res.params.file
   req.end()
