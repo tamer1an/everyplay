@@ -7,21 +7,21 @@ angular.module('frameApp', [
   , 'galleryApp'
 ]);
 
-// angular.module('frameApp').config(['$routeProvider',
-//   function($routeProvider) {
-//     $routeProvider.
-//       when('/phones', {
-//         templateUrl: 'partials/phone-list.html',
-//         controller: 'PhoneListCtrl'
-//       })
-//       .when('/phones/:phoneId', {
-//         templateUrl: 'partials/phone-detail.html',
-//         controller: 'PhoneDetailCtrl'
-//       })
-//       .otherwise({
-//         redirectTo: '/phones'
-//       });
-//   }]);
+angular.module('frameApp').config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/fileManager', {
+        templateUrl: '/html/frameFileGallery.html',
+        controller: 'mainViewCtrl'
+      })
+      // .when('/phones/:phoneId', {
+      //   templateUrl: 'partials/phone-detail.html',
+      //   controller: 'PhoneDetailCtrl'
+      // })
+      .otherwise({
+        redirectTo: '/fileManager'
+      });
+  }]);
 
 /* Controllers */
 angular.module('frameControllers', []);

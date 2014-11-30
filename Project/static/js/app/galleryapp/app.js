@@ -13,7 +13,7 @@ angular.module('galleryApp').directive('filegallery', function() {
     return {
         restrict: 'A',
         replace: true,
-        templateUrl: '/html/fileGallery/fileGallery.html',
+        templateUrl: '/html/fileGallery.html',
         controller: 'mainViewCtrl',
         link: function($scope,element){
             
