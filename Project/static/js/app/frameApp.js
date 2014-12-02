@@ -7,6 +7,8 @@ angular.module('frameApp', [
   , 'galleryApp'
 ]);
 
+angular.module('frameApp').value('M',Modernizr);
+
 angular.module('frameApp').config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.

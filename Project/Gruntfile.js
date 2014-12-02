@@ -68,17 +68,18 @@ module.exports = function(grunt) {
         },
         "modernizr": {
             dist: {
-                "devFile" : "remote",
-                "outputFile" : "static/js/vendor/modernizr/modernizr.js",
-                "extra" : {
-                    "shiv" : true,
-                    "printshiv" : false,
-                    "load" : true,
-                    "mq" : false,
-                    "cssclasses" : true
-                },
+                "options" : [
+                    "setClasses",
+                    "addTest",
+                    // "html5printshiv",
+                    // "load",
+                    // "fnBind",
+                    "testProp"
+                ],
                 "uglify" : false,
-                "parseFiles" : false
+                "parseFiles" : false,
+                "tests": ['datauri','localstorage'],
+                "dest" : "static/js/vendor/modernizr/modernizr.js"
             }
         },
         "bower-install-simple": {

@@ -13,11 +13,29 @@ app.set 'view engine', 'jade'
 app.use express.static path.join(__dirname, 'static')
 app.get '/', routes.index
 
-app.get '/fileManager', (req,res) ->
+app.get '/files', (req,res) ->
   res.json
-    files:
-      data:
-        isenabled:false
+    files:[
+      size:26
+      name:'image'
+      ext:'jpg',
 
+        size:5
+        name:'text'
+        ext:'txt',
+
+          size:10
+          name:'page'
+          ext:'html',
+          
+            size:26
+            name:'test_image'
+            ext:'jpg',
+            
+              size:5
+              name:'test_text'
+              ext:'txt',
+    ]
+    
 server = http.createServer(app).listen app.get('port'), ->
   console.log('Express server listening on port ' + app.get 'port' )

@@ -144,8 +144,3 @@ main [ng-view] {
   height: 100%;
   background: #808080;
 }
-main [ng-view] section[filegallery] {
-  border: 1px solid #000;
-  margin: 2%;
-  height: 70%;
-}

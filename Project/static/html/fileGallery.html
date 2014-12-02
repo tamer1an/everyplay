@@ -1,19 +1,20 @@
 
 <section>
-  <section id="fName">
-    <header><a>File name</a></header>
-    <div></div>
-  </section>
-  <section id="fType">
-    <header><a>File type</a></header>
-    <div></div>
-  </section>
-  <section id="fSize">
-    <header><a>Size (Kb)</a></header>
-    <div></div>
-  </section>
-  <section id="fAction">
-    <header><a>Action</a></header>
-    <div></div>
-  </section>
+  <aside class="fAction">
+    <header>Action:</header>
+    <section>{{actionMsg}}</section>
+  </aside>
+  <header>
+    <div class="fName"><a ng-click="scopeOrder = scopeOrder=='name'? '-'+scopeOrder : 'name' ">File name</a></div>
+    <div class="fType"><a ng-click="scopeOrder = scopeOrder=='ext' ? '-'+scopeOrder : 'ext'  ">File type</a></div>
+    <div class="fSize"><a ng-click="scopeOrder = scopeOrder=='size'? '-'+scopeOrder : 'size' ">Size (Kb)</a></div>
+  </header>
+  <ol>
+    <li ng-repeat="file in files | filter:{ name: fName }  | orderBy: scopeOrder "> 
+      <div class="fName">{{ file.name }}</div>
+      <div class="fType">{{ file.ext  }}</div>
+      <div class="fSize">{{ file.size }} Kb</div>
+    </li>
+  </ol>
+  <input type="text" ng-model="fName" placeholder="Filter by" autofocus="autofocus"/>
 </section>

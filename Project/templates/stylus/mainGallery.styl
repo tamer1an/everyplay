@@ -1,20 +1,37 @@
 section[filegallery] 
-  display flex
-  ms-flex-direction row
-  -webkit-flex-direction row
-  flex-direction row
-  // flex-wrap: wrap;
-
-  section
-    margin 3px
-    -webkit-flex-grow 1
-    ms-flex-grow 1
-    flex-grow 1
-    // flex-basis 44px
-    min-width 80px
+  border 1px solid black
+  margin 2%
+  height 70%
+  min-width 320px
+  
+  > input
+    top 68.5%
+    position absolute
+    left 3%
+    display block
+  
+  > aside
+    width 23.5%
+    float right
+  
+  > ol, > header
+    width 76.5%
+  
+  > header, li
+    display flex
+    ms-flex-direction row
+    -webkit-flex-direction row
+    flex-direction row
+            
+    > div
+      margin 3px
+      -webkit-flex-grow 1
+      ms-flex-grow 1
+      flex-grow 1
+      min-width 80px
     
-    > header
-      margin 0 auto
-      width 64px
+      > a
+        margin 0 auto
+        width 64px
   
   

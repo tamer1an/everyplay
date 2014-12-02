@@ -20,9 +20,14 @@
     "grunt-contrib-jade": "~0.12.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-stylus": "~0.18.0",
+    "grunt-contrib-connect":"*",
+    "grunt-saucelabs":"*",
+    "grunt-contrib-qunit":"*",
+    "grunt-contrib-nodeunit":"*",
     "grunt-contrib-watch": "*",
-    "grunt-modernizr": "~0.5.2",
+    "grunt-modernizr": "https://github.com/Modernizr/grunt-modernizr/tarball/feature/modernizr-3.0",
     "grunt-bower-install-simple": "~0.9.3",
+    "grunt-bower-requirejs":"*"
     "argparse": "~ 0.1.11"
   },
   "devDependencies": {

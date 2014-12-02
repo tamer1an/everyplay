@@ -1,25 +1,22 @@
 section
-
-    section#fName 
-        header
-            a File name
+    aside.fAction 
+        header Action:
+        section {{actionMsg}}
         
-        div
-        
-    section#fType
-        header
-            a File type
-        
-        div
-        
-    section#fSize 
-        header
-            a Size (Kb)
-        
-        div
-        
-    section#fAction 
-        header
-            a Action
-        
-        div
+    header
+        div.fName 
+            a(ng-click="scopeOrder = scopeOrder=='name'? '-'+scopeOrder : 'name' ") File name
+            
+        div.fType
+            a(ng-click="scopeOrder = scopeOrder=='ext' ? '-'+scopeOrder : 'ext'  ") File type
+            
+        div.fSize 
+            a(ng-click="scopeOrder = scopeOrder=='size'? '-'+scopeOrder : 'size' ") Size (Kb)
+            
+    ol
+        li(ng-repeat="file in files | filter:{ name: fName }  | orderBy: scopeOrder ")  
+            div.fName {{ file.name }}
+            div.fType {{ file.ext  }}
+            div.fSize {{ file.size }} Kb
+            
+    input(type="text", ng-model="fName", placeholder="Filter by" autofocus)

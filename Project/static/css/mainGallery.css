@@ -1,15 +1,40 @@
 section[filegallery] {
-  display: flex;
-  flex-direction: row;
-  ms-flex-direction: row;
+  border: 1px solid #000;
+  margin: 2%;
+  height: 70%;
+  min-width: 320px;
 }
-section[filegallery] section {
+section[filegallery] > input {
+  top: 68.5%;
+  position: absolute;
+  left: 3%;
+  display: block;
+}
+section[filegallery] > aside {
+  width: 23.5%;
+  float: right;
+}
+section[filegallery] > ol,
+section[filegallery] > header {
+  width: 76.5%;
+}
+section[filegallery] > header,
+section[filegallery] li {
+  display: flex;
+  ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+section[filegallery] > header > div,
+section[filegallery] li > div {
   margin: 3px;
-  flex-grow: 1;
+  -webkit-flex-grow: 1;
   ms-flex-grow: 1;
+  flex-grow: 1;
   min-width: 80px;
 }
-section[filegallery] section > header {
+section[filegallery] > header > div > a,
+section[filegallery] li > div > a {
   margin: 0 auto;
   width: 64px;
 }
