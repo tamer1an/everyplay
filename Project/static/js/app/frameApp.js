@@ -16,10 +16,27 @@ angular.module('frameApp').config(['$routeProvider',
         templateUrl: '/html/frameFileGallery.html',
         controller: 'fileListViewCtrl'
       })
+      
+      .when('/fileUpload', {
+        templateUrl: '/html/frameFileGallery.html',
+        controller: 'fileListViewCtrl'
+      })
+      
+      .when('/fileNew', {
+        templateUrl: '/html/frameFileGallery.html',
+        controller: 'fileListViewCtrl'
+      })
+      
+      .when('/fileBookmarks', {
+        templateUrl: '/html/frameFileGallery.html',
+        controller: 'fileListViewCtrl'
+      })
+      
       .when('/imagePreview/:fileId', {
         templateUrl: '/html/fileGalleryImagePreview.html',
         controller: 'imagePreviewViewCtrl'
       })
+      
       .otherwise({
         redirectTo: '/fileManager'
       });
@@ -28,31 +45,31 @@ angular.module('frameApp').config(['$routeProvider',
 /* Controllers */
 angular.module('frameControllers', []);
 
-angular.module('frameControllers').controller('controlPanelCtrl', ['$scope' ,'checkFeatures', 
-  function($scope,checkFeatures) {
-    $scope.myalert = function() {debugger}
-    
-     checkFeatures.compatible($scope);
-    
-    debugger
-   
-  }]);
+angular.module('frameApp').controller('controlPanelCtrl', ['$scope' , '$location',
+  function($scope,$location) {
+  
+   $scope.new = function ()       { $location.path( "/fileNew" );   }
+   $scope.upload = function ()    { $location.path( "/fileUpload" );   }
+   $scope.bookmarks = function () { $location.path( "/fileBookmarks"); }
+   $scope.fileList = function ()  { $location.path( "/fileManager" );  }
+
+}]);
 
 
-// angular.module('frameApp').directive('appControlPanel', function() {
-//     return {
-//         restrict: 'A',
-//         replace: true,
-//         templateUrl: '/html/controlPanel.html',
-//         controller: 'maincontrolPanelCtrlViewCtrl',
-//         link: function($scope,element){
-//             console.log(element)
-//         },
-//         compile:function(){
-//             debugger
-//         }
-//     }
-// });
+angular.module('frameApp').directive('appcontrolpanel', function() {
+    return {
+        restrict: 'A',
+        replace: true,
+        templateUrl: '/html/controlPanel.html',
+        controller: 'controlPanelCtrl',
+        link: function($scope,element){
+            console.log(element)
+        },
+        compile:function(){
+            debugger
+        }
+    }
+});
 
 // angular.module('frameControllers').controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
 //   function($scope, $routeParams, Phone) {

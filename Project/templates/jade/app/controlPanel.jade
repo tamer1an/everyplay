@@ -1,8 +1,8 @@
 aside
     div
-        input(type="button",value="File List")
-        input(type="button",value="Bookmarks")
+        input(type="button",value="File List", ng-click="fileList()")
+        input(type="button",value="Bookmarks", ng-click="bookmarks()")
     
     div    
-        input(type="button",value="Upload")
-        input(type="button",value="Create New")
+        input(type="button",value="Upload"    ,ng-click="upload()")
+        input(type="button",value="Create New",ng-click="new()")

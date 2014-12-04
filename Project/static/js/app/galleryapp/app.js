@@ -24,7 +24,6 @@ angular.module('galleryApp').directive('filegallery', function() {
     }
 });
 
-
 angular.module('galleryApp').service('checkFeatures', function(M){
   return {
     compatible:function(scope){
@@ -46,10 +45,3 @@ angular.module('galleryApp')
             debugger
         }
 });
-    
-
-
-// window.addEventListener('storage', storageEventHandler, false);
-// function storageEventHandler(event) {
-//                 applySetting();
-// }
