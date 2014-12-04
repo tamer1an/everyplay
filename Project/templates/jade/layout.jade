@@ -8,8 +8,10 @@ html(lang="en")
         // block websoket_setup
         block libs_manual_include
         // App
-        block app_lunch
+        block app_lunch 
         
     body
         main
-            div(ng-view)
+            div(ng-view,ng-click="rowClick(this)")
+            
+            aside(appControlPanel)

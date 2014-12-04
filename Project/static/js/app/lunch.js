@@ -3,15 +3,20 @@ requirejs.config({
     paths: {
         app: '/js/app',
         galleryApp: '/js/app/galleryapp',
+        galleryCtrl : '/js/app/galleryapp/controllers',
         css: '/css'
     }
 });
 
 loadCss('css/mainGallery.css');
 
-requirejs(['galleryApp/app','galleryApp/controllers/fileGallery'],function(common){
-    require(['app/init']);
+require(['galleryApp/app'],function(common){
+     require(['galleryCtrl/fileList','galleryCtrl/imagePreview'],function(common){
+        require(['app/init']);
+    });
 });
+
+
 
 function loadCss(url) {
     var link = document.createElement("link");

@@ -18,7 +18,8 @@ app.get '/files', (req,res) ->
     files:[
       size:26
       name:'image'
-      ext:'jpg',
+      ext:'jpg'
+      src:'http://images.unian.net/photos/2014_11/1415046891-9671.jpg',
 
         size:5
         name:'text'
@@ -30,7 +31,8 @@ app.get '/files', (req,res) ->
           
             size:26
             name:'test_image'
-            ext:'jpg',
+            ext:'jpg'
+            src:'http://images.unian.net/photos/2014_12/1417625721-5333.jpg',
             
               size:5
               name:'test_text'

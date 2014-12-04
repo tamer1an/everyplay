@@ -19,15 +19,13 @@ angular.module('galleryApp').directive('filegallery', function() {
             console.log(element)
         },
         compile:function(){
-            debugger
+            // debugger
         }
     }
 });
 
 
 angular.module('galleryApp').service('checkFeatures', function(M){
-  
-
   return {
     compatible:function(scope){
         
@@ -42,7 +40,16 @@ angular.module('galleryApp').service('checkFeatures', function(M){
   }
 });
 
-  //  window.addEventListener('storage', storageEventHandler, false);
-        // function storageEventHandler(event) {
-        //                 applySetting();
-        // }
+angular.module('galleryApp')
+    .filter('rowSelect', function() {
+        return function(item) {
+            debugger
+        }
+});
+    
+
+
+// window.addEventListener('storage', storageEventHandler, false);
+// function storageEventHandler(event) {
+//                 applySetting();
+// }

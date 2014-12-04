@@ -1,22 +1,35 @@
 section[filegallery] {
   border: 1px solid #000;
   margin: 2%;
-  height: 70%;
+  height: 98%;
   min-width: 320px;
+  min-height: 330px;
 }
 section[filegallery] > input {
-  top: 68.5%;
-  position: absolute;
-  left: 3%;
-  display: block;
+  float: left;
+  margin-top: -22px;
+  -webkit-transform: translateX(12px);
 }
 section[filegallery] > aside {
   width: 23.5%;
   float: right;
+  height: 100%;
+  background: #d3d3d3;
 }
 section[filegallery] > ol,
 section[filegallery] > header {
   width: 76.5%;
+}
+section[filegallery] > ol {
+  height: 92%;
+  background: #fff;
+  min-height: 300px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 section[filegallery] > header,
 section[filegallery] li {
@@ -37,4 +50,19 @@ section[filegallery] > header > div > a,
 section[filegallery] li > div > a {
   margin: 0 auto;
   width: 64px;
+}
+.rowSelected {
+  background: #ff0;
+}
+.previewImg {
+  width: 60%;
+  height: 90%;
+  margin: 5% 20%;
+  float: left;
+  border: 1px solid #008000;
+  padding: 2%;
+}
+.previewImgSection {
+  width: 95%;
+  float: left;
 }

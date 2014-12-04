@@ -14,12 +14,12 @@ angular.module('frameApp').config(['$routeProvider',
     $routeProvider.
       when('/fileManager', {
         templateUrl: '/html/frameFileGallery.html',
-        controller: 'mainViewCtrl'
+        controller: 'fileListViewCtrl'
       })
-      // .when('/phones/:phoneId', {
-      //   templateUrl: 'partials/phone-detail.html',
-      //   controller: 'PhoneDetailCtrl'
-      // })
+      .when('/imagePreview/:fileId', {
+        templateUrl: '/html/fileGalleryImagePreview.html',
+        controller: 'imagePreviewViewCtrl'
+      })
       .otherwise({
         redirectTo: '/fileManager'
       });
@@ -28,11 +28,31 @@ angular.module('frameApp').config(['$routeProvider',
 /* Controllers */
 angular.module('frameControllers', []);
 
-// angular.module('frameControllers').controller('PhoneListCtrl', ['$scope', 'Phone',
-//   function($scope, Phone) {
-//     $scope.phones = Phone.query();
-//     $scope.orderProp = 'age';
-//   }]);
+angular.module('frameControllers').controller('controlPanelCtrl', ['$scope' ,'checkFeatures', 
+  function($scope,checkFeatures) {
+    $scope.myalert = function() {debugger}
+    
+     checkFeatures.compatible($scope);
+    
+    debugger
+   
+  }]);
+
+
+// angular.module('frameApp').directive('appControlPanel', function() {
+//     return {
+//         restrict: 'A',
+//         replace: true,
+//         templateUrl: '/html/controlPanel.html',
+//         controller: 'maincontrolPanelCtrlViewCtrl',
+//         link: function($scope,element){
+//             console.log(element)
+//         },
+//         compile:function(){
+//             debugger
+//         }
+//     }
+// });
 
 // angular.module('frameControllers').controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
 //   function($scope, $routeParams, Phone) {
